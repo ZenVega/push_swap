@@ -10,32 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+#include "ft_printf/ft_printf.h"
 
 int	main(int argc, char **argv)
 {
 	int		i;
-	//t_list	**list_a;
-	//int		as_int;
+	t_list	*list_a;
+	t_list	*current;
+	int		*as_int;
+	int		current_int;
 
-
-	if (argc < 1)
+	list_a = NULL;
+	if (argc < 2)
 		return (0);
-	//list_a = (t_list **)malloc(sizeof(t_list) * 10);
-	i = 0;
-	while (i++ < argc)
+	i = 1;
+	while (i < argc)
 	{
-		printf("%s\n", argv[i]);
-		//as_int = ft_atoi(split_str[i]);
-		//ft_lstadd_back(list_a, ft_lstnew(&as_int));
+		as_int = (int *)malloc(sizeof(int));
+		if (!as_int)
+		{
+			ft_lstclear(&list_a, free);
+			return (1);
+		}
+		*as_int = ft_atoi(argv[i]);
+		ft_lstadd_back(&list_a, ft_lstnew(as_int));
+		i++;
 	}
-	//i = 0;
-	//while (list_a[i++])
-	//{
-	//	int current_int = *(int *)list_a[i]->content;
-	//	printf("%d\n", current_int);
-	//}
-	//ft_lstclear(list_a, free);
-	i = 0;
-	return (0);
 
+	current = list_a;
+	i = 0;
+	while (current)
+	{
+		current_int = *(int *)current->content;
+		ft_printf("-%d-\n", current_int);
+		current = current->next;
+	}
+	ft_lstclear(&list_a, free);
+	return (0);
 }
