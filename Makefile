@@ -6,12 +6,13 @@
 #    By: uschmidt <uschmidt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 10:42:30 by uschmidt          #+#    #+#              #
-#    Updated: 2024/12/17 16:49:57 by uschmidt         ###   ########.fr        #
+#    Updated: 2025/01/03 18:00:37 by uschmidt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFILES = \
-push_swap.c
+push_swap.c\
+actions.c
 
 OFILES = $(CFILES:.c=.o)
 
