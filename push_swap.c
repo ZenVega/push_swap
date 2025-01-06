@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:18:55 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/06 11:49:17 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:03:58 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -18,6 +18,11 @@ void	print_list(t_list *list)
 	t_list	*current;
 	int		current_int;
 
+	if (list == NULL)
+	{
+		ft_printf("LIST EMPTY");
+		return ;
+	}
 	current = list;
 	start = 0;
 	while (current != list || !start)
@@ -63,15 +68,17 @@ int	main(int argc, char **argv)
 	create_list(&list_a, argc, argv);
 	if (argc < 2)
 		return (0);
-	ft_printf("OG\n");
+	call_action("pb", &list_a, &list_b);
+	call_action("pb", &list_a, &list_b);
+	ft_printf("LA After PUSH\n");
 	print_list(list_a);
-	call_action("ra", &list_a, &list_b);
-	ft_printf("After Rerotate\n");
+	ft_printf("LA After PUSH\n");
+	print_list(list_b);
+	call_action("ss", &list_a, &list_b);
+	ft_printf("LA After ROTATE\n");
 	print_list(list_a);
-	call_action("rra", &list_a, &list_b);
-	call_action("rra", &list_a, &list_b);
-	ft_printf("After ReReRerotate\n");
-	print_list(list_a);
+	ft_printf("LB After ROTATE\n");
+	print_list(list_b);
 	ft_lstclear(&list_a, free);
 	ft_lstclear(&list_b, free);
 	return (0);
