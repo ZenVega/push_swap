@@ -6,16 +6,22 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:32:07 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/03 18:06:26 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/06 11:44:00 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
+# include "ft_printf/ft_printf.h"
 
-int		swap(t_list *list);
-t_list	*rotate(t_list *list, int reverse);
+void	swap(t_list **list);
+t_list	*shift(t_list **list);
+t_list	*pop(t_list **list);
+void	rotate(t_list **list, int dir);
 void	print_list(t_list *list);
-int		push(t_list **source, t_list **destination);
 
+void	call_action(char	*ID, t_list **a, t_list **b);
+void	swap_list(t_list **list, char list_id);
+void	rotate_list(t_list **list, char list_id, int dir);
 #endif

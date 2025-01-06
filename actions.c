@@ -6,98 +6,72 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:30:20 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/03 18:40:23 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/06 11:39:55 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "ft_printf/ft_printf.h"
 
-int	swap(t_list *list)
+void	swap(t_list **list)
 {
 	void	*buffer;
+	t_list	*temp;
 
-	if (!list || !list->next)
-		return (0);
-	buffer = list->content;
-	list->content = list->next->content;
-	list->next->content = buffer;
-	ft_printf("sa\n");
-	return (1);
+	temp = *list;
+	if (!temp || !temp->next)
+		return ;
+	buffer = temp->content;
+	temp->content = temp->next->content;
+	temp->next->content = buffer;
 }
 
-t_list	*rotate(t_list *list, int reverse)
+t_list	*shift(t_list **list)
 {
+	t_list	*og_list;
+	t_list	*shifted;
+
+	og_list = *list;
+	if (!og_list || !og_list->next)
+		return (NULL);
+	shifted = og_list;
+	og_list = og_list->next;
+	*list = og_list;
+	shifted->next = NULL;
+	return (shifted);
+}
+
+t_list	*pop(t_list **list)
+{
+	t_list	*popped;
 	t_list	*current;
 
-	if (!list || !list->next)
+	if (!list)
 		return (NULL);
-	if (reverse)
+	current = *list;
+	popped = current->next;
+	while (popped->next)
 	{
-		current = list;
-		while (current->next && current->next != list)
-			current = current->next;
-		current->next = list;
-		ft_printf("rra\n");
-		return (current);
+		current = popped;
+		popped = popped->next;
 	}
-	else
-	{
-		ft_printf("ra\n");
-		return (list->next);
-	}
+	current->next = NULL;
+	return (popped);
 }
 
-//create pop function and split push in 2 parts
-int	push(t_list **source, t_list **destination)
+void	rotate(t_list **list, int dir)
 {
 	t_list	*temp;
-	t_list	*next;
-	t_list	*src;
-	t_list	*dest;
 
-	src = *source;
-	dest = *destination;
-	if (!src || !src->content)
-		return (0);
-	temp = src;
-	next = src->next;
-	src = rotate(src, 1);
-	src->next = next;
-	*source = next;
-	next = NULL;
-	if (dest)
+	if (!*list)
+		return ;
+	if (dir == -1)
 	{
-		if (dest->next)
-			next = dest->next;
-		dest = rotate(dest, 1);
-		dest->next = temp;
-		temp->next = next;
+		temp = pop(list);
+		ft_lstadd_front(list, temp);
 	}
 	else
 	{
-		dest = temp;
-		dest->next = dest;
-	}
-	*destination = dest;
-	return (1);
-}
-
-void	print_list(t_list *list)
-{
-	int		start;
-	t_list	*current;
-	int		current_int;
-
-	current = list;
-	start = 0;
-	while (current != list || !start)
-	{
-		start = 1;
-		current_int = *(int *)current->content;
-		ft_printf("-%d-\n", current_int);
-		current = current->next;
-		if (!current)
-			break ;
+		temp = shift(list);
+		ft_lstadd_back(list, temp);
 	}
 }
