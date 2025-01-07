@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:32:07 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/06 14:02:34 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/07 16:01:55 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,35 @@
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
 
-void	swap(t_list **list);
-t_list	*shift(t_list **list);
-t_list	*pop(t_list **list);
-void	rotate(t_list **list, int dir);
-void	print_list(t_list *list);
-void	push(t_list **dest, t_list	**src);
+typedef struct s_sl
+{
+	int			value;
+	int			rank;
+	struct s_sl	*next;
+}	t_sl;
 
-void	call_action(char *ID, t_list **a, t_list **b);
-void	swap_list(t_list **a, t_list **b, char list_id);
-void	rotate_list(t_list **a, t_list **b, char list_id, int dir);
-void	push_list(t_list **dest, t_list	**src, char list_id);
+//utils.c
+t_sl	*shift(t_sl **list);
+t_sl	*pop(t_sl **list);
+void	unshift(t_sl **list, t_sl *new);
+void	push_back(t_sl **list, t_sl *new);
+//utils_2.c
+void	clear_list(t_sl **list);
+t_sl	*new_list(int val);
+int		list_size(t_sl *lst);
+t_sl	*lst_last(t_sl *lst);
+
+//actions.c
+void	swap(t_sl **list);
+void	rotate(t_sl **list, int dir);
+void	print_sl(t_sl *list);
+void	push(t_sl **dest, t_sl	**src);
+
+void	call_action(char *ID, t_sl **a, t_sl **b);
+void	swap_list(t_sl **a, t_sl **b, char list_id);
+void	rotate_list(t_sl **a, t_sl **b, char list_id, int dir);
+void	push_list(t_sl **dest, t_sl	**src, char list_id);
+
+void	solve_simple(t_sl **a, t_sl **b);
+
 #endif
