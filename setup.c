@@ -36,7 +36,7 @@ int	check_dup(t_sl **list)
 	comp = current->next;
 	while (current && comp)
 	{
-		while (comp && current->value != comp->value)
+		while (comp != NULL && current->value != comp->value)
 			comp = comp->next;
 		if (comp)
 			return (0);
@@ -89,11 +89,11 @@ int	create_list(t_sl **list, int argc, char **argv)
 	t_sl	*new;
 	char	**input;
 
-	i = 1;
+	i = 0;
 	if (argc == 2)
-		input = ft_split((const char *)argv, ' ');
+		input = ft_split((const char *)argv[1], ' ');
 	else
-		input = argv;
+		input = argv + 1;
 	while (input[i])
 	{
 		if (!validate(input[i]))

@@ -48,11 +48,8 @@ int	main(int argc, char **argv)
 	list_len = create_list(&list_a, argc, argv);
 	if (!list_len)
 		return (handle_error(&list_a));
-	ft_printf("LA\n");
-	print_sl(list_a);
 	solve_simple(&list_a, &list_b, list_len);
-	ft_printf("LA\n");
-	print_sl(list_a);
+//	print_sl(list_a);
 	clear_list(&list_a);
 	clear_list(&list_b);
 	return (0);
