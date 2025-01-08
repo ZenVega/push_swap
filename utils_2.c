@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:25:09 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/07 16:06:35 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/07 16:13:19 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"

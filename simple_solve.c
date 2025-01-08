@@ -43,10 +43,12 @@ void	solve_simple(t_sl **a, t_sl **b)
 	while (list_size(*a) > 1)
 	{
 		i = find_lowest(*a);
-		while (i-- >= 0)
+		while (i-- > 0)
 		{
-			call_action("rra", a, b);
+			call_action("ra", a, b);
 		}
 		call_action("pb", a, b);
 	}
+	while (list_size(*b) > 0)
+		call_action("pa", a, b);
 }

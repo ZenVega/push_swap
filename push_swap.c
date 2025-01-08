@@ -6,28 +6,32 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:18:55 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/07 15:32:28 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/07 16:23:34 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 #include "ft_printf/ft_printf.h"
+#include "libft/libft.h"
 
 void	create_list(t_sl **list, int argc, char **argv)
 {
-	int		i;
 	int		*as_int;
 	t_sl	*new;
+	char	**input;
 
-	i = 1;
-	while (i < argc)
+	if (argc == 2)
+		input = ft_split((const char *)argv, ' ');
+	else
+		input = argv;
+	while (*input)
 	{
 		as_int = (int *)malloc(sizeof(int));
 		if (!as_int)
 			clear_list(list);
-		*as_int = ft_atoi(argv[i]);
+		*as_int = ft_atoi(*input);
 		new = new_list(*as_int);
 		push_back(list, new);
-		i++;
+		input++;
 	}
 	ft_printf("List Created\n");
 }
