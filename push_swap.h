@@ -36,7 +36,7 @@ t_sl	*lst_last(t_sl *lst);
 
 //setup.c
 int		create_list(t_sl **list, int argc, char **argv);
-int		log_error(void);
+int		handle_error(t_sl **list);
 
 //actions.c
 void	swap(t_sl **list);
@@ -51,6 +51,6 @@ void	rotate_list(t_sl **a, t_sl **b, char list_id, int dir);
 void	push_list(t_sl **dest, t_sl	**src, char list_id);
 
 //simple_solve.c
-void	solve_simple(t_sl **a, t_sl **b);
+void	solve_simple(t_sl **a, t_sl **b, int len);
 
 #endif

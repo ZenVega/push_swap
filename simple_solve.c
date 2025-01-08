@@ -36,19 +36,20 @@ int	find_lowest(t_sl	*list)
 	return (i_lowest);
 }
 
-void	solve_simple(t_sl **a, t_sl **b)
+void	solve_simple(t_sl **a, t_sl **b, int len)
 {
 	int		i;
 
-	while (list_size(*a) > 1)
+	i = 0;
+	while (i < len)
 	{
-		i = find_lowest(*a);
-		while (i-- > 0)
+		while ((*a)->rank != i)
 		{
 			call_action("ra", a, b);
 		}
 		call_action("pb", a, b);
+		i++;
 	}
-	while (list_size(*b) > 0)
+	while (len-- > 0)
 		call_action("pa", a, b);
 }
