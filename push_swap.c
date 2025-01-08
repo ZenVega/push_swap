@@ -17,7 +17,6 @@ void	print_sl(t_sl *list)
 {
 	int		start;
 	t_sl	*current;
-	int		current_int;
 
 	if (list == NULL)
 	{
@@ -29,8 +28,7 @@ void	print_sl(t_sl *list)
 	while (current != list || !start)
 	{
 		start = 1;
-		current_int = current->value;
-		ft_printf("-%d-\n", current_int);
+		ft_printf("Val:%d || Rank:%d\n", current->value, current->rank);
 		current = current->next;
 		if (!current)
 			break ;
@@ -46,11 +44,9 @@ int	main(int argc, char **argv)
 	list_b = NULL;
 	if (argc < 2 || !create_list(&list_a, argc, argv))
 		return (log_error());
-	solve_simple(&list_a, &list_b);
 	ft_printf("LA");
 	print_sl(list_a);
-	ft_printf("LB");
-	print_sl(list_b);
+	solve_simple(&list_a, &list_b);
 	clear_list(&list_a);
 	clear_list(&list_b);
 	return (0);

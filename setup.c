@@ -46,6 +46,32 @@ int	check_dup(t_sl **list)
 	return (1);
 }
 
+void	rank_list(t_sl **list)
+{
+	t_sl	*current;
+	t_sl	*comp;
+	t_sl	*first;
+	int		rank;
+
+	rank = 0;
+	current = *list;
+	first = *list;
+	comp = current->next;
+	while (current && comp)
+	{
+		while (comp)
+		{
+			if (current->value > comp->value)
+				rank++;
+			comp = comp->next;
+		}
+		current->rank = rank;
+		rank = 0;
+		current = current->next;
+		comp = first;
+	}
+}
+
 int	log_error(void)
 {
 	ft_printf("Error\n");
@@ -74,5 +100,6 @@ int	create_list(t_sl **list, int argc, char **argv)
 		push_back(list, new);
 		i++;
 	}
+	rank_list(list);
 	return (check_dup(list));
 }

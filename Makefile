@@ -33,7 +33,7 @@ NAME = push_swap
 PRINTF_DIR = ft_printf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
-ARGS = 5 T 8 2 9 -3
+ARGS = 5 8 2 9 -3
 
 all: $(NAME) 
 
