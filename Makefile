@@ -6,7 +6,7 @@
 #    By: uschmidt <uschmidt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 10:42:30 by uschmidt          #+#    #+#              #
-#    Updated: 2025/01/07 15:54:41 by uschmidt         ###   ########.fr        #
+#    Updated: 2025/01/08 11:13:41 by uschmidt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ actions.c\
 call_actions.c\
 utils.c\
 utils_2.c\
+setup.c\
 simple_solve.c\
 
 OFILES = $(CFILES:.c=.o)
@@ -32,7 +33,7 @@ NAME = push_swap
 PRINTF_DIR = ft_printf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
-ARGS = 5 8 2 9 -3
+ARGS = 5 T 8 2 9 -3
 
 all: $(NAME) 
 

@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:32:07 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/07 16:29:44 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:15:41 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	clear_list(t_sl **list);
 t_sl	*new_list(int val);
 int		list_size(t_sl *lst);
 t_sl	*lst_last(t_sl *lst);
+
+//setup.c
+int		create_list(t_sl **list, int argc, char **argv);
+int		log_error(void);
 
 //actions.c
 void	swap(t_sl **list);

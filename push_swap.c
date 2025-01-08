@@ -6,35 +6,12 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:18:55 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/07 16:23:34 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:03:27 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 #include "ft_printf/ft_printf.h"
 #include "libft/libft.h"
-
-void	create_list(t_sl **list, int argc, char **argv)
-{
-	int		*as_int;
-	t_sl	*new;
-	char	**input;
-
-	if (argc == 2)
-		input = ft_split((const char *)argv, ' ');
-	else
-		input = argv;
-	while (*input)
-	{
-		as_int = (int *)malloc(sizeof(int));
-		if (!as_int)
-			clear_list(list);
-		*as_int = ft_atoi(*input);
-		new = new_list(*as_int);
-		push_back(list, new);
-		input++;
-	}
-	ft_printf("List Created\n");
-}
 
 void	print_sl(t_sl *list)
 {
@@ -67,9 +44,8 @@ int	main(int argc, char **argv)
 
 	list_a = NULL;
 	list_b = NULL;
-	create_list(&list_a, argc, argv);
-	if (argc < 2)
-		return (0);
+	if (argc < 2 || !create_list(&list_a, argc, argv))
+		return (log_error());
 	solve_simple(&list_a, &list_b);
 	ft_printf("LA");
 	print_sl(list_a);

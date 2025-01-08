@@ -33,8 +33,6 @@ void	clear_list(t_sl **list)
 	{
 		tmp = *list;
 		*list = tmp->next;
-		free(&tmp->value);
-		free(&tmp->rank);
 		free(tmp);
 	}
 	*list = NULL;
