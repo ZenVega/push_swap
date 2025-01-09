@@ -13,55 +13,74 @@
 #include "libft/libft.h"
 #include "push_swap.h"
 
-void	call_action(char	*ID, t_sl **a, t_sl **b)
+void	call_action(char *id, t_obj *sobj)
 {
-	if (!ft_strncmp("sa", ID, 2))
-		swap_list(a, NULL, 'a');
-	else if (!ft_strncmp("sb", ID, 2))
-		swap_list(b, NULL, 'b');
-	else if (!ft_strncmp("ss", ID, 2))
-		swap_list(a, b, 's');
-	else if (!ft_strncmp("pa", ID, 2))
-		push_list(a, b, 'a');
-	else if (!ft_strncmp("pb", ID, 2))
-		push_list(b, a, 'b');
-	else if (!ft_strncmp("rra", ID, 3))
-		rotate_list(a, NULL, 'a', -1);
-	else if (!ft_strncmp("rrb", ID, 3))
-		rotate_list(b, NULL, 'b', -1);
-	else if (!ft_strncmp("rrr", ID, 3))
-		rotate_list(a, b, 'r', -1);
-	else if (!ft_strncmp("ra", ID, 2))
-		rotate_list(a, NULL, 'a', 1);
-	else if (!ft_strncmp("rb", ID, 2))
-		rotate_list(b, NULL, 'b', 1);
-	else if (!ft_strncmp("rr", ID, 2))
-		rotate_list(a, b, 'r', 1);
+	if (*id == 's')
+		swap_list(sobj, id);
+	else if (*id == 'p')
+		push_list(sobj, id);
+	else if (*id == 'r')
+		rotate_list(sobj, id);
 	else
 		ft_printf("Wrong action code");
 }
 
-void	swap_list(t_sl **a, t_sl **b, char list_id)
+void	swap_list(t_obj *sobj, char *id)
 {
-	swap(a);
-	if (list_id == 's')
-		swap(b);
-	ft_printf("s%c\n", list_id);
+	if (id[1] == 'a')
+	{
+		swap(&sobj->a);
+		sobj->len_a++;
+		sobj->len_b--;
+	}
+	else if (id[1] == 'b')
+	{
+		swap(&sobj->b);
+		sobj->len_b++;
+		sobj->len_a--;
+	}
+	else if (id[1] == 's')
+	{
+		swap(&sobj->a);
+		swap(&sobj->b);
+	}
+	ft_printf("%s\n", id);
 }
 
-void	rotate_list(t_sl **a, t_sl **b, char list_id, int dir)
+void	rotate_list(t_obj *sobj, char *id)
 {
-	rotate(a, dir);
-	if (list_id == 'r')
-		rotate(b, dir);
-	if (dir == -1)
-		ft_printf("rr%c\n", list_id);
+	if (id[1] == 'r')
+	{
+		if (id[2] == 'a')
+			rotate(&sobj->a, -1);
+		else if (id[2] == 'b')
+			rotate(&sobj->b, -1);
+		else
+		{
+			rotate(&sobj->a, -1);
+			rotate(&sobj->b, -1);
+		}
+	}
 	else
-		ft_printf("r%c\n", list_id);
+	{
+		if (id[1] == 'a')
+			rotate(&sobj->a, 1);
+		else if (id[1] == 'b')
+			rotate(&sobj->b, 1);
+		else
+		{
+			rotate(&sobj->a, 1);
+			rotate(&sobj->b, 1);
+		}
+	}
+	ft_printf("%s\n", id);
 }
 
-void	push_list(t_sl **dest, t_sl	**src, char list_id)
+void	push_list(t_obj *sobj, char *id)
 {
-	push(dest, src);
-	ft_printf("p%c\n", list_id);
+	if (id[1] == 'a')
+		push(&sobj->a, &sobj->b);
+	else
+		push(&sobj->b, &sobj->a);
+	ft_printf("%s\n", id);
 }

@@ -22,6 +22,14 @@ typedef struct s_sl
 	struct s_sl	*next;
 }	t_sl;
 
+typedef struct s_obj
+{
+	t_sl	*a;
+	t_sl	*b;
+	int		len_a;
+	int		len_b;
+}	t_obj;
+
 //utils.c
 t_sl	*shift(t_sl **list);
 void	unshift(t_sl **list, t_sl *new);
@@ -46,12 +54,12 @@ void	push(t_sl **dest, t_sl	**src);
 void	print_sl(t_sl *list);
 
 //call_actions.c
-void	call_action(char *ID, t_sl **a, t_sl **b);
-void	swap_list(t_sl **a, t_sl **b, char list_id);
-void	rotate_list(t_sl **a, t_sl **b, char list_id, int dir);
-void	push_list(t_sl **dest, t_sl	**src, char list_id);
+void	call_action(char *Iid, t_obj *sobj);
+void	swap_list(t_obj *sobj, char *id);
+void	rotate_list(t_obj *sobj, char *id);
+void	push_list(t_obj *sobj, char *id);
 
 //simple_solve.c
-void	solve_simple(t_sl **a, t_sl **b, int len);
+void	solve_simple(t_obj *sobj, int len);
 
 #endif
