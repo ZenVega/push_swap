@@ -97,11 +97,10 @@ int	create_list(t_sl **list, int argc, char **argv)
 	while (input[i])
 	{
 		if (!validate(input[i]))
-		{
-			clear_list(list);
 			return (0);
-		}
-		new = new_list(ft_atoi(input[i]));
+		new = new_list(0);
+		if (!valtoi(&new->value, input[i]))
+			return (0);
 		push_back(list, new);
 		i++;
 	}

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "limits.h"
 
 t_sl	*shift(t_sl **list)
 {
@@ -78,4 +79,32 @@ void	push_back(t_sl **list, t_sl *new)
 		return ;
 	tmp = lst_last(*list);
 	tmp->next = new;
+}
+
+int	valtoi(int *dest, const char *nptr)
+{
+	int					neg;
+	long long			result;
+
+	neg = 1;
+	result = 0;
+	while (*nptr == ' ' || *nptr == '\f' || *nptr == '\n'
+		|| *nptr == '\r' || *nptr == '\t' || *nptr == '\v')
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+	{
+		if (*nptr == '-')
+			neg = -1;
+		nptr++;
+	}
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		result = result * 10 + *nptr - '0';
+		nptr++;
+	}
+	result *= neg;
+	if (result > INT_MAX || result < INT_MIN)
+		return (0);
+	*dest = (int)result;
+	return (1);
 }

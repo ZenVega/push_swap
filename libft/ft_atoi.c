@@ -14,8 +14,8 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int	neg;
-	int	result;
+	int					neg;
+	unsigned long long	result;
 
 	neg = 1;
 	result = 0;

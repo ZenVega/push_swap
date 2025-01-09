@@ -23,12 +23,12 @@ t_sl	*new_list(int val)
 	return (newlist);
 }
 
-void	clear_list(t_sl **list)
+int	clear_list(t_sl **list)
 {
 	t_sl	*tmp;
 
 	if (!list)
-		return ;
+		return (0);
 	while (*list)
 	{
 		tmp = *list;
@@ -36,6 +36,7 @@ void	clear_list(t_sl **list)
 		free(tmp);
 	}
 	*list = NULL;
+	return (0);
 }
 
 int	list_size(t_sl *lst)

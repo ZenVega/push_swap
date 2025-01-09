@@ -27,9 +27,10 @@ t_sl	*shift(t_sl **list);
 void	unshift(t_sl **list, t_sl *new);
 t_sl	*pop(t_sl **list);
 void	push_back(t_sl **list, t_sl *new);
+int		valtoi(int *dest, const char *nptr);
 
 //utils_2.c
-void	clear_list(t_sl **list);
+int		clear_list(t_sl **list);
 t_sl	*new_list(int val);
 int		list_size(t_sl *lst);
 t_sl	*lst_last(t_sl *lst);
