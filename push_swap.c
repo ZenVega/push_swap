@@ -38,18 +38,20 @@ void	print_sl(t_sl *list)
 int	main(int argc, char **argv)
 {
 	t_obj	*sobj;
-	int		list_len;
 
 	sobj = (t_obj *)malloc(sizeof(t_obj));
 	if (argc < 2 || !sobj)
 		return (handle_error(NULL));
 	sobj->a = NULL;
 	sobj->b = NULL;
-	list_len = create_list(&sobj->a, argc, argv);
-	if (!list_len)
+	sobj->len_a = create_list(&sobj->a, argc, argv);
+	if (!sobj->len_a)
 		return (handle_error(&sobj->a));
-	solve_simple(sobj, list_len);
-//	print_sl(list_a);
+	solve_50_50(sobj);
+	ft_printf("A:\n");
+	print_sl(sobj->a);
+	ft_printf("B:\n");
+	print_sl(sobj->b);
 	clear_list(&sobj->a);
 	clear_list(&sobj->b);
 	free(sobj);

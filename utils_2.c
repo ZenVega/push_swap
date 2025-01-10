@@ -71,3 +71,15 @@ t_sl	*lst_last(t_sl *lst)
 	}
 	return (last);
 }
+
+int	get_rank_index(t_sl **list, int index)
+{
+	int		i;
+	t_sl	*lst;
+
+	lst = *list;
+	i = 0;
+	while (i++ != index)
+		lst = lst->next;
+	return (lst->rank);
+}

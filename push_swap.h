@@ -42,6 +42,7 @@ int		clear_list(t_sl **list);
 t_sl	*new_list(int val);
 int		list_size(t_sl *lst);
 t_sl	*lst_last(t_sl *lst);
+int		get_rank_index(t_sl **list, int index);
 
 //setup.c
 int		create_list(t_sl **list, int argc, char **argv);
@@ -60,6 +61,8 @@ void	rotate_list(t_obj *sobj, char *id);
 void	push_list(t_obj *sobj, char *id);
 
 //simple_solve.c
-void	solve_simple(t_obj *sobj, int len);
+void	solve_simple(t_obj *sobj);
+//sove_2.c
+void	solve_50_50(t_obj *sobj);
 
 #endif

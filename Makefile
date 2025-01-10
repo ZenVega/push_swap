@@ -18,6 +18,7 @@ utils.c\
 utils_2.c\
 setup.c\
 simple_solve.c\
+solve_2.c\
 
 OFILES = $(CFILES:.c=.o)
 

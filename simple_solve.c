@@ -12,18 +12,18 @@
 
 #include "push_swap.h"
 
-void	solve_simple(t_obj *sobj, int len)
+void	solve_simple(t_obj *sobj)
 {
 	int		i;
 
 	i = 0;
-	while (i < len)
+	while (i < sobj->len_a)
 	{
 		while (sobj->a->rank != i)
 			call_action("ra", sobj);
 		call_action("pb", sobj);
 		i++;
 	}
-	while (len-- > 0)
+	while (sobj->len_a-- > 0)
 		call_action("pa", sobj);
 }
