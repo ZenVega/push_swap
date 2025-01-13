@@ -79,7 +79,10 @@ int	get_rank_index(t_sl **list, int index)
 
 	lst = *list;
 	i = 0;
-	while (i++ != index)
+	while (i < index)
+	{
 		lst = lst->next;
+		i++;
+	}
 	return (lst->rank);
 }

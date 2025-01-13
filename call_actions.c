@@ -79,8 +79,16 @@ void	rotate_list(t_obj *sobj, char *id)
 void	push_list(t_obj *sobj, char *id)
 {
 	if (id[1] == 'a')
+	{
 		push(&sobj->a, &sobj->b);
+		sobj->len_a++;
+		sobj->len_b--;
+	}
 	else
+	{
 		push(&sobj->b, &sobj->a);
+		sobj->len_b++;
+		sobj->len_a--;
+	}
 	ft_printf("%s\n", id);
 }
