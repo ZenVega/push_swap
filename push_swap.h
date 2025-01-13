@@ -42,7 +42,7 @@ int		clear_list(t_sl **list);
 t_sl	*new_list(int val);
 int		list_size(t_sl *lst);
 t_sl	*lst_last(t_sl *lst);
-int		get_rank_index(t_sl **list, int index);
+int		get_rank(t_sl **list, int len, int index);
 
 //setup.c
 int		create_list(t_sl **list, int argc, char **argv);

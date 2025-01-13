@@ -72,17 +72,16 @@ t_sl	*lst_last(t_sl *lst)
 	return (last);
 }
 
-int	get_rank_index(t_sl **list, int index)
+int	get_rank(t_sl **list, int len, int index)
 {
 	int		i;
 	t_sl	*lst;
 
 	lst = *list;
 	i = 0;
-	while (i < index)
-	{
+	if (index < 0)
+		index = len + index;
+	while (i++ < index)
 		lst = lst->next;
-		i++;
-	}
 	return (lst->rank);
 }

@@ -20,43 +20,50 @@ void	check_swap(t_obj *sobj)
 		call_action("sa", sobj);
 }
 
-int	get_next_in_list(t_sl *init_list, int lst_len, int target, int dir)
+void	check_rotate(t_obj *sobj)
 {
-	int		next_forward;
-	int		next_back;
-	t_sl	*list;
+	int		nxt;
+	int		nxt_b;
+	int		i;
+	int		dif;
 
-	list = init_list;
-	next_forward = 0;
-	if (dir >= 0)
+	nxt = 0;
+	nxt_b = sobj->len_a - 1;
+	while (get_rank(&sobj->a, sobj->len_a, nxt) >= sobj->len_a / 2)
+		nxt++;
+	ft_printf("NXT+: %d\n", nxt);
+	ft_printf("NXT-: %d\n", nxt_b);
+	while (nxt_b > 0
+		&& get_rank(&sobj->a, sobj->len_a, nxt_b) >= sobj->len_a / 2)
+		nxt_b--;
+	ft_printf("NXT-: %d\n", nxt_b);
+	nxt_b = nxt_b - sobj->len_a;
+	if (!nxt || nxt_b > -nxt)
+		nxt = nxt_b;
+	nxt_b = get_rank(&sobj->a, sobj->len_a, nxt);
+	i = 0;
+	print_sl(sobj->b);
+	if (nxt < 0)
 	{
-		while (list->rank >= target)
+		while (i >= nxt)
 		{
-			next_forward++;
-			list = list->next;
+			dif = nxt_b - get_rank(&sobj->b, sobj->len_b, i);
+			if (dif == 1 || dif == -1)
+				break ;
+			i--;
 		}
 	}
-	if (dir <= 0)
+	else
 	{
-		list = init_list;
-		next_back = lst_len - 1;
-		while (next_back > 0 && get_rank_index(&list, next_back) >= target)
-			next_back--;
+		while (i <= nxt)
+		{
+			dif = nxt_b - get_rank(&sobj->b, sobj->len_b, i);
+			if (dif == 1 || dif == -1)
+				break ;
+			i++;
+		}
 	}
-	if (!next_forward || next_back - lst_len > -next_forward)
-		return (next_back - lst_len);
-	return (next_forward);
-}
-
-void	check_rotate(t_obj *sobj, int init_len)
-{
-	int		next_in_a;
-	int		next_in_b;
-
-	next_in_a = get_next_in_list(sobj->a, sobj->len_a, init_len / 2, 0);
-	ft_printf("NEXT_IN_A %d\n", next_in_a);
-	next_in_b = get_next_in_list(sobj->b, sobj->len_b, init_len / 2, next_in_a);
-	ft_printf("NEXT_IN_B %d\n", next_in_b);
+	ft_printf("ShiftIndex: %d\n", i);
 }
 
 void	solve_50_50(t_obj *sobj)
@@ -70,15 +77,17 @@ void	solve_50_50(t_obj *sobj)
 			&& sobj->a->next->rank < sobj->a->rank)
 			check_swap(sobj);
 		else if (sobj->a->rank < init_len / 2)
-			call_action("pa", sobj);
+			call_action("pb", sobj);
 		else
-			check_rotate(sobj, init_len);
+			check_rotate(sobj);
 	}
+	call_action("pb", sobj);
+	call_action("pb", sobj);
 	call_action("pb", sobj);
 	call_action("pb", sobj);
 	ft_printf("A:\n");
 	print_sl(sobj->a);
 	ft_printf("B:\n");
 	print_sl(sobj->b);
-	check_rotate(sobj, sobj->len_a);
+	check_rotate(sobj);
 }

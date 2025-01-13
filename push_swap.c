@@ -48,10 +48,6 @@ int	main(int argc, char **argv)
 	if (!sobj->len_a)
 		return (handle_error(&sobj->a));
 	solve_50_50(sobj);
-	ft_printf("A:\n");
-	print_sl(sobj->a);
-	ft_printf("B:\n");
-	print_sl(sobj->b);
 	clear_list(&sobj->a);
 	clear_list(&sobj->b);
 	free(sobj);

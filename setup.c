@@ -72,7 +72,7 @@ int	rank_list(t_sl **list)
 		current = current->next;
 		comp = *list;
 	}
-	return (rank_max);
+	return (rank_max + 1);
 }
 
 int	handle_error(t_sl **list)
