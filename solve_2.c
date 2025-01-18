@@ -67,17 +67,17 @@ int	find_closest(t_obj *sobj, int val, int dir)
 	return (min_i);
 }
 
-void	check_rotate(t_obj *sobj)
+void	check_rotate(t_obj *sobj, int target)
 {
 	int		nxt;
 	int		nxt_back;
 
 	nxt = 0;
 	nxt_back = sobj->len_a - 1;
-	while (get_rank(&sobj->a, sobj->len_a, nxt) >= sobj->len_a / 2)
+	while (get_rank(&sobj->a, sobj->len_a, nxt) >= target)
 		nxt++;
 	while (nxt_back > 0
-		&& get_rank(&sobj->a, sobj->len_a, nxt_back) >= sobj->len_a / 2)
+		&& get_rank(&sobj->a, sobj->len_a, nxt_back) >= target)
 		nxt_back--;
 	nxt_back = nxt_back - sobj->len_a;
 	if (!nxt || nxt_back > -nxt)
@@ -117,19 +117,28 @@ void	check_rotate(t_obj *sobj)
 void	solve_50_50(t_obj *sobj)
 {
 	int	init_len;
+	int	i;
 
+	i = 0;
 	init_len = sobj->len_a;
 	call_action("pb", sobj);
 	call_action("pb", sobj);
-	while (sobj->len_b < init_len / 2)
+//	PUSH to b either 50% or all but three
+	while (sobj->len_b < init_len - 3)
 	{
-		if (sobj->a->rank < init_len / 2)
+		if (sobj->a->rank < init_len - 3)
 			call_action("pb", sobj);
 		else if (sobj->a->next->rank < sobj->a->rank)
 			check_swap(sobj);
 		else
-			check_rotate(sobj);
+			check_rotate(sobj, init_len - 3);
+		i++;
 	}
+	// if 50%
+	// sort_both();
+	//
+	// if all but 3
+	// sort_b_back
 	ft_printf("A:\n");
 	print_sl(sobj->a);
 	ft_printf("B:\n");
