@@ -64,5 +64,6 @@ void	push_list(t_obj *sobj, char *id);
 void	solve_simple(t_obj *sobj);
 //sove_2.c
 void	solve_50_50(t_obj *sobj);
+int		find_closest(t_obj *sobj, int val, int dir);
 
 #endif

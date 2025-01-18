@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <limits.h>
 
 void	check_swap(t_obj *sobj)
 {
@@ -20,50 +21,97 @@ void	check_swap(t_obj *sobj)
 		call_action("sa", sobj);
 }
 
-void	check_rotate(t_obj *sobj)
+int	abs_dst(int a, int b)
 {
-	int		nxt;
-	int		nxt_b;
-	int		i;
-	int		dif;
+	a -= b;
+	if (a < 0)
+		a = -a;
+	return (a);
+}
 
-	nxt = 0;
-	nxt_b = sobj->len_a - 1;
-	while (get_rank(&sobj->a, sobj->len_a, nxt) >= sobj->len_a / 2)
-		nxt++;
-	ft_printf("NXT+: %d\n", nxt);
-	ft_printf("NXT-: %d\n", nxt_b);
-	while (nxt_b > 0
-		&& get_rank(&sobj->a, sobj->len_a, nxt_b) >= sobj->len_a / 2)
-		nxt_b--;
-	ft_printf("NXT-: %d\n", nxt_b);
-	nxt_b = nxt_b - sobj->len_a;
-	if (!nxt || nxt_b > -nxt)
-		nxt = nxt_b;
-	nxt_b = get_rank(&sobj->a, sobj->len_a, nxt);
+int	find_closest(t_obj *sobj, int val, int dir)
+{
+	int	i;
+	int	min_dif;
+	int	min_i;
+	int	current;
+
 	i = 0;
-	print_sl(sobj->b);
-	if (nxt < 0)
+	min_dif = INT_MAX;
+	if (dir < 0)
 	{
-		while (i >= nxt)
+		while (i >= dir)
 		{
-			dif = nxt_b - get_rank(&sobj->b, sobj->len_b, i);
-			if (dif == 1 || dif == -1)
-				break ;
+			current = get_rank(&sobj->b, sobj->len_b, i);
+			if (abs_dst(val, current) < min_dif)
+			{
+				min_i = i;
+				min_dif = abs_dst(val, current);
+			}
 			i--;
 		}
 	}
 	else
 	{
-		while (i <= nxt)
+		while (i <= dir)
 		{
-			dif = nxt_b - get_rank(&sobj->b, sobj->len_b, i);
-			if (dif == 1 || dif == -1)
-				break ;
+			current = get_rank(&sobj->b, sobj->len_b, i);
+			if (abs_dst(val, current) < min_dif)
+			{
+				min_i = i;
+				min_dif = abs_dst(val, current);
+			}
 			i++;
 		}
 	}
-	ft_printf("ShiftIndex: %d\n", i);
+	return (min_i);
+}
+
+void	check_rotate(t_obj *sobj)
+{
+	int		nxt;
+	int		nxt_back;
+
+	nxt = 0;
+	nxt_back = sobj->len_a - 1;
+	while (get_rank(&sobj->a, sobj->len_a, nxt) >= sobj->len_a / 2)
+		nxt++;
+	while (nxt_back > 0
+		&& get_rank(&sobj->a, sobj->len_a, nxt_back) >= sobj->len_a / 2)
+		nxt_back--;
+	nxt_back = nxt_back - sobj->len_a;
+	if (!nxt || nxt_back > -nxt)
+		nxt = nxt_back;
+	nxt_back = get_rank(&sobj->a, sobj->len_a, nxt);
+	nxt_back = find_closest(sobj, nxt_back, nxt);
+	if (nxt > 0)
+	{
+		while (nxt > 0)
+		{
+			if (nxt_back > 0)
+			{
+				call_action("rr", sobj);
+				nxt_back--;
+			}
+			else
+				call_action("ra", sobj);
+			nxt--;
+		}
+	}
+	else
+	{
+		while (nxt < 0)
+		{
+			if (nxt_back < 0)
+			{
+				call_action("rrr", sobj);
+				nxt_back++;
+			}
+			else
+				call_action("rra", sobj);
+			nxt++;
+		}
+	}
 }
 
 void	solve_50_50(t_obj *sobj)
@@ -71,23 +119,19 @@ void	solve_50_50(t_obj *sobj)
 	int	init_len;
 
 	init_len = sobj->len_a;
-	while (0 && sobj->len_b < init_len / 2)
+	call_action("pb", sobj);
+	call_action("pb", sobj);
+	while (sobj->len_b < init_len / 2)
 	{
-		if (sobj->a->next->rank > init_len / 2
-			&& sobj->a->next->rank < sobj->a->rank)
-			check_swap(sobj);
-		else if (sobj->a->rank < init_len / 2)
+		if (sobj->a->rank < init_len / 2)
 			call_action("pb", sobj);
+		else if (sobj->a->next->rank < sobj->a->rank)
+			check_swap(sobj);
 		else
 			check_rotate(sobj);
 	}
-	call_action("pb", sobj);
-	call_action("pb", sobj);
-	call_action("pb", sobj);
-	call_action("pb", sobj);
 	ft_printf("A:\n");
 	print_sl(sobj->a);
 	ft_printf("B:\n");
 	print_sl(sobj->b);
-	check_rotate(sobj);
 }

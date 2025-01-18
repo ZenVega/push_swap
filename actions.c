@@ -14,15 +14,19 @@
 
 void	swap(t_sl **list)
 {
-	int		buffer;
+	int		buffer_val;
+	int		buffer_rank;
 	t_sl	*temp;
 
 	temp = *list;
 	if (!temp || !temp->next)
 		return ;
-	buffer = temp->value;
+	buffer_val = temp->value;
+	buffer_rank = temp->rank;
 	temp->value = temp->next->value;
-	temp->next->value = buffer;
+	temp->rank = temp->next->rank;
+	temp->next->value = buffer_val;
+	temp->next->rank = buffer_rank;
 }
 
 void	rotate(t_sl **list, int dir)

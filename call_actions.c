@@ -28,17 +28,9 @@ void	call_action(char *id, t_obj *sobj)
 void	swap_list(t_obj *sobj, char *id)
 {
 	if (id[1] == 'a')
-	{
 		swap(&sobj->a);
-		sobj->len_a++;
-		sobj->len_b--;
-	}
 	else if (id[1] == 'b')
-	{
 		swap(&sobj->b);
-		sobj->len_b++;
-		sobj->len_a--;
-	}
 	else if (id[1] == 's')
 	{
 		swap(&sobj->a);
