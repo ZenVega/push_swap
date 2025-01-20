@@ -6,7 +6,7 @@
 #    By: uschmidt <uschmidt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 10:42:30 by uschmidt          #+#    #+#              #
-#    Updated: 2025/01/08 11:13:41 by uschmidt         ###   ########.fr        #
+#    Updated: 2025/01/20 15:10:22 by uschmidt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ utils_2.c\
 setup.c\
 simple_solve.c\
 solve_2.c\
+find_cheapest.c\
+solve_for_idx.c\
 
 OFILES = $(CFILES:.c=.o)
 

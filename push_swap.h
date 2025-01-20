@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:32:07 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/08 11:15:41 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:32:22 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,11 @@ void	solve_simple(t_obj *sobj);
 void	solve_50_50(t_obj *sobj);
 int		find_closest(t_obj *sobj, int val, int dir);
 
+//find_cheapest.c
+int		find_cheapest(t_obj *sobj);
+int		get_abs(int val);
+int		find_nxt_higher(t_sl *lst, int target);
+
+//solve_for_idx
+void	solve_for_idx(t_obj *sobj, int i);
 #endif

@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 12:55:01 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/09 13:12:31 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:55:17 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,100 @@ void	check_rotate(t_obj *sobj, int target)
 	}
 }
 
+int	find_high_low(t_sl *lst, int high)
+{
+	int		ret_i;
+	int		i;
+	int		cur;
+	t_sl	*next;
+
+	i = 0;
+	next = lst;
+	cur = lst->rank;
+	while (next)
+	{
+		if (high)
+		{
+			if (next->rank > cur)
+			{
+				ret_i = i;
+				cur = next->rank;
+			}
+		}
+		else
+		{
+			if (next->rank < cur)
+			{
+				ret_i = i;
+				cur = next->rank;
+			}
+		}
+		next = next->next;
+		i++;
+	}
+	return (ret_i);
+}
+
+int	*find_highest_three(t_sl *lst)
+{
+	int		*top;
+	int		ranks[3];
+	int		rank;
+	int		i;
+	t_sl	*current;
+
+	top = malloc(3 * sizeof(int));
+	i = 0;
+	while (i < 3)
+	{
+		top[i] = -1;
+		ranks[i++] = INT_MIN;
+	}
+	i = 0;
+	current = lst;
+	while (current)
+	{
+		rank = current->rank;
+		if (rank > ranks[0])
+		{
+			ranks[2] = ranks[1];
+			top[2] = top[1];
+			ranks[1] = ranks[0];
+			top[1] = top[0];
+			ranks[0] = rank;
+			top[0] = i;
+		}
+		else if (rank > ranks[1])
+		{
+			ranks[2] = ranks[1];
+			top[2] = top[1];
+			ranks[1] = rank;
+			top[1] = i;
+		}
+		else if (rank > ranks[2])
+		{
+			ranks[2] = rank;
+			top[2] = i;
+		}
+		current = current->next;
+		i++;
+	}
+	return (top);
+}
+
+int	is_sorted(t_sl *lst, int dir)
+{
+	while (lst && lst->next)
+	{
+		if (dir && lst->rank > lst->next->rank)
+			return (0);
+		else if (!dir && lst->rank < lst->next->rank)
+			return (0);
+		lst = lst->next;
+	}
+	return (1);
+}
+
 void	solve_50_50(t_obj *sobj)
 {
 	int	init_len;
@@ -123,7 +217,6 @@ void	solve_50_50(t_obj *sobj)
 	init_len = sobj->len_a;
 	call_action("pb", sobj);
 	call_action("pb", sobj);
-//	PUSH to b either 50% or all but three
 	while (sobj->len_b < init_len - 3)
 	{
 		if (sobj->a->rank < init_len - 3)
@@ -134,13 +227,16 @@ void	solve_50_50(t_obj *sobj)
 			check_rotate(sobj, init_len - 3);
 		i++;
 	}
-	// if 50%
-	// sort_both();
-	//
-	// if all but 3
-	// sort_b_back
 	ft_printf("A:\n");
 	print_sl(sobj->a);
 	ft_printf("B:\n");
 	print_sl(sobj->b);
+	while (sobj->len_b > 0)
+	{
+		solve_for_idx(sobj, find_cheapest(sobj));
+		ft_printf("A:\n");
+		print_sl(sobj->a);
+		ft_printf("B:\n");
+		print_sl(sobj->b);
+	}
 }
