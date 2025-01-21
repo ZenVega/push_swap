@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 	sobj->len_a = create_list(&sobj->a, argc, argv);
 	if (!sobj->len_a)
 		return (handle_error(&sobj->a));
-	solve_50_50(sobj);
+	solve_turk(sobj);
 	clear_list(&sobj->a);
 	clear_list(&sobj->b);
 	free(sobj);

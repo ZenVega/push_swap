@@ -65,12 +65,18 @@ void	solve_simple(t_obj *sobj);
 //sove_2.c
 void	solve_50_50(t_obj *sobj);
 int		find_closest(t_obj *sobj, int val, int dir);
+//sove_turk.c
+int		find_high_low(t_sl *lst, int high);
+void	solve_turk(t_obj *sobj);
 
 //find_cheapest.c
 int		find_cheapest(t_obj *sobj);
+int		find_cheapest_turk(t_obj *sobj);
 int		get_abs(int val);
 int		find_nxt_higher(t_sl *lst, int target);
+int		find_nxt_lower(t_sl *lst, int target);
 
 //solve_for_idx
 void	solve_for_idx(t_obj *sobj, int i);
+void	solve_for_idx_turk(t_obj *sobj, int i);
 #endif

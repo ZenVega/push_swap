@@ -29,89 +29,21 @@ int	abs_dst(int a, int b)
 	return (a);
 }
 
-int	find_closest(t_obj *sobj, int val, int dir)
+int	find_in_list(t_sl **list, int val)
 {
-	int	i;
-	int	min_dif;
-	int	min_i;
-	int	current;
+	int		i;
+	t_sl	*lst;
 
 	i = 0;
-	min_dif = INT_MAX;
-	if (dir < 0)
+	lst = *list;
+	while (lst)
 	{
-		while (i >= dir)
-		{
-			current = get_rank(&sobj->b, sobj->len_b, i);
-			if (abs_dst(val, current) < min_dif)
-			{
-				min_i = i;
-				min_dif = abs_dst(val, current);
-			}
-			i--;
-		}
+		if (lst->rank == val)
+			return (i);
+		lst = lst->next;
+		i++;
 	}
-	else
-	{
-		while (i <= dir)
-		{
-			current = get_rank(&sobj->b, sobj->len_b, i);
-			if (abs_dst(val, current) < min_dif)
-			{
-				min_i = i;
-				min_dif = abs_dst(val, current);
-			}
-			i++;
-		}
-	}
-	return (min_i);
-}
-
-void	check_rotate(t_obj *sobj, int target)
-{
-	int		nxt;
-	int		nxt_back;
-
-	nxt = 0;
-	nxt_back = sobj->len_a - 1;
-	while (get_rank(&sobj->a, sobj->len_a, nxt) >= target)
-		nxt++;
-	while (nxt_back > 0
-		&& get_rank(&sobj->a, sobj->len_a, nxt_back) >= target)
-		nxt_back--;
-	nxt_back = nxt_back - sobj->len_a;
-	if (!nxt || nxt_back > -nxt)
-		nxt = nxt_back;
-	nxt_back = get_rank(&sobj->a, sobj->len_a, nxt);
-	nxt_back = find_closest(sobj, nxt_back, nxt);
-	if (nxt > 0)
-	{
-		while (nxt > 0)
-		{
-			if (nxt_back > 0)
-			{
-				call_action("rr", sobj);
-				nxt_back--;
-			}
-			else
-				call_action("ra", sobj);
-			nxt--;
-		}
-	}
-	else
-	{
-		while (nxt < 0)
-		{
-			if (nxt_back < 0)
-			{
-				call_action("rrr", sobj);
-				nxt_back++;
-			}
-			else
-				call_action("rra", sobj);
-			nxt++;
-		}
-	}
+	return (-1);
 }
 
 int	find_high_low(t_sl *lst, int high)
@@ -122,6 +54,7 @@ int	find_high_low(t_sl *lst, int high)
 	t_sl	*next;
 
 	i = 0;
+	ret_i = 0;
 	next = lst;
 	cur = lst->rank;
 	while (next)
@@ -146,19 +79,6 @@ int	find_high_low(t_sl *lst, int high)
 		i++;
 	}
 	return (ret_i);
-}
-
-int	is_sorted(t_sl *lst, int dir)
-{
-	while (lst && lst->next)
-	{
-		if (dir && lst->rank > lst->next->rank)
-			return (0);
-		else if (!dir && lst->rank < lst->next->rank)
-			return (0);
-		lst = lst->next;
-	}
-	return (1);
 }
 
 void	sort_three(t_obj *sobj)
@@ -209,27 +129,50 @@ void	rotate_to_0(t_obj *sobj)
 	}
 }
 
-void	solve_50_50(t_obj *sobj)
+void	move_back_a(t_obj *sobj)
 {
-	int	init_len;
-	int	i;
+	int	next_target;
 
-	i = 0;
-	init_len = sobj->len_a;
-	call_action("pb", sobj);
-	call_action("pb", sobj);
-	while (sobj->len_b < init_len - 3)
-	{
-		if (sobj->a->rank < init_len - 3)
-			call_action("pb", sobj);
-		else if (sobj->a->next->rank < sobj->a->rank)
-			check_swap(sobj);
-		else
-			check_rotate(sobj, init_len - 3);
-		i++;
-	}
-	sort_three(sobj);
 	while (sobj->len_b > 0)
-		solve_for_idx(sobj, find_cheapest(sobj));
+	{
+		next_target = -1;
+		if (sobj->a->rank == sobj->b->rank + 1)
+			next_target = 0;
+		if (next_target == -1)
+			next_target = find_nxt_higher(sobj->a, sobj->b->rank);
+		if (next_target == -1)
+			next_target = find_high_low(sobj->a, 0);
+		if (next_target > sobj->len_a / 2)
+			next_target -= sobj->len_a;
+		while (next_target > 0)
+		{
+			call_action("ra", sobj);
+			next_target--;
+		}
+		while (next_target < 0)
+		{
+			call_action("rra", sobj);
+			next_target++;
+		}
+		call_action("pa", sobj);
+	}
+}
+
+void	solve_turk(t_obj *sobj)
+{
+	int	cheapest;
+
+	call_action("pb", sobj);
+	call_action("pb", sobj);
+	while (sobj->len_a > 3)
+	{
+		//ft_printf("A:\n");
+		//print_sl(sobj->a);
+		//ft_printf("B:\n");
+		//print_sl(sobj->b);
+		cheapest = find_cheapest_turk(sobj);
+		solve_for_idx_turk(sobj, cheapest);
+	}
+	move_back_a(sobj);
 	rotate_to_0(sobj);
 }

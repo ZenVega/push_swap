@@ -18,7 +18,7 @@ utils.c\
 utils_2.c\
 setup.c\
 simple_solve.c\
-solve_2.c\
+solve_turk.c\
 find_cheapest.c\
 solve_for_idx.c\
 
