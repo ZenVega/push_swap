@@ -227,10 +227,6 @@ void	solve_50_50(t_obj *sobj)
 			check_rotate(sobj, init_len - 3);
 		i++;
 	}
-	ft_printf("A:\n");
-	print_sl(sobj->a);
-	ft_printf("B:\n");
-	print_sl(sobj->b);
 	while (sobj->len_b > 0)
 	{
 		solve_for_idx(sobj, find_cheapest(sobj));

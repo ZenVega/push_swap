@@ -41,24 +41,21 @@ void	swap_list(t_obj *sobj, char *id)
 
 void	rotate_list(t_obj *sobj, char *id)
 {
+	if (id[1] == 'a')
+		rotate(&sobj->a, 1);
+	else if (id[1] == 'b')
+		rotate(&sobj->b, 1);
 	if (id[1] == 'r')
 	{
 		if (id[2] == 'a')
 			rotate(&sobj->a, -1);
 		else if (id[2] == 'b')
 			rotate(&sobj->b, -1);
-		else
+		else if (id[2] == 'r')
 		{
 			rotate(&sobj->a, -1);
 			rotate(&sobj->b, -1);
 		}
-	}
-	else
-	{
-		if (id[1] == 'a')
-			rotate(&sobj->a, 1);
-		else if (id[1] == 'b')
-			rotate(&sobj->b, 1);
 		else
 		{
 			rotate(&sobj->a, 1);

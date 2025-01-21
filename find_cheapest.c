@@ -21,7 +21,7 @@ int	find_nxt_higher(t_sl *lst, int target)
 
 	i = 0;
 	closest = INT_MAX;
-	while (lst && lst->next)
+	while (lst)
 	{
 		if (lst->rank > target && lst->rank - target < closest)
 		{

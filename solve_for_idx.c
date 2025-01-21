@@ -30,10 +30,16 @@ void	solve_for_idx(t_obj *sobj, int idx_b)
 			idx_b++;
 			idx_a++;
 		}
-		while (idx_b++ < 0)
+		while (idx_b < 0)
+		{
 			call_action("rrb", sobj);
-		while (idx_a++ < 0)
+			idx_b++;
+		}
+		while (idx_a < 0)
+		{
 			call_action("rra", sobj);
+			idx_a++;
+		}
 	}
 	else
 	{
@@ -43,10 +49,16 @@ void	solve_for_idx(t_obj *sobj, int idx_b)
 			idx_b--;
 			idx_a--;
 		}
-		while (idx_b-- < 0)
+		while (idx_b > 0)
+		{
 			call_action("rb", sobj);
-		while (idx_a-- < 0)
+			idx_b--;
+		}
+		while (idx_a > 0)
+		{
 			call_action("ra", sobj);
+			idx_a--;
+		}
 	}
 	call_action("pa", sobj);
 }
