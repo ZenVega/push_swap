@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:46:02 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/08 11:17:55 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:06:37 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -75,11 +75,14 @@ int	rank_list(t_sl **list)
 	return (rank_max + 1);
 }
 
-int	handle_error(t_sl **list)
+int	free_input(char **input)
 {
-	if (list != NULL)
-		clear_list(list);
-	ft_printf("Error\n");
+	int	i;
+
+	i = 0;
+	while (input[i])
+		free(input[i++]);
+	free(input);
 	return (0);
 }
 
@@ -97,14 +100,18 @@ int	create_list(t_sl **list, int argc, char **argv)
 	while (input[i])
 	{
 		if (!validate(input[i]))
-			return (0);
+			return (free_input(input));
 		new = new_list(0);
 		if (!valtoi(&new->value, input[i]))
-			return (0);
+			return (free_input(input));
 		push_back(list, new);
 		i++;
 	}
+	free_input(input);
 	if (!check_dup(list))
+	{
+		clear_list(list);
 		return (0);
+	}
 	return (rank_list(list));
 }

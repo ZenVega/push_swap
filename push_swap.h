@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:32:07 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/22 13:10:21 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:13:02 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		find_nxt_lower(t_sl *lst, int target);
 
 //setup.c
 int		create_list(t_sl **list, int argc, char **argv);
-int		handle_error(t_sl **list);
+int		handle_error(t_obj *sobj);
 
 //actions.c
 void	swap(t_sl **list);
