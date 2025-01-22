@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:32:24 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/22 11:50:44 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:26:28 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,23 @@ int	find_high_low(t_sl *lst, int high)
 	int		ret_i;
 	int		i;
 	int		cur;
-	t_sl	*next;
 
 	i = 0;
 	ret_i = 0;
-	next = lst;
 	cur = lst->rank;
-	while (next)
+	while (lst)
 	{
-		if (high)
+		if (high && lst->rank > cur)
 		{
-			if (next->rank > cur)
-			{
-				ret_i = i;
-				cur = next->rank;
-			}
+			ret_i = i;
+			cur = lst->rank;
 		}
-		else
+		else if (!high && lst->rank < cur)
 		{
-			if (next->rank < cur)
-			{
-				ret_i = i;
-				cur = next->rank;
-			}
+			ret_i = i;
+			cur = lst->rank;
 		}
-		next = next->next;
+		lst = lst->next;
 		i++;
 	}
 	return (ret_i);

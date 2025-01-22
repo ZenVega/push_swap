@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+
 static int	ft_ptr_len(unsigned long long ptr)
 {
 	int	len;
@@ -18,7 +19,7 @@ static int	ft_ptr_len(unsigned long long ptr)
 	len = 0;
 	while (ptr != 0)
 	{
-		ptr /= 16; // Divide the number by the base (16 for hexadecimal)
+		ptr /= 16;
 		len++;
 	}
 	return (len);

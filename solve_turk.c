@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 12:55:01 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/22 11:40:49 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:21:25 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,10 @@ void	solve_turk(t_obj *sobj)
 	call_action("pb", sobj);
 	while (sobj->len_a > 3)
 	{
-		//ft_printf("A:\n");
-		//print_sl(sobj->a);
-		//ft_printf("B:\n");
-		//print_sl(sobj->b);
 		cheapest = find_cheapest(sobj);
 		solve_for_idx(sobj, cheapest);
 	}
+	sort_three(sobj);
 	move_back_a(sobj);
 	rotate_to_0(sobj);
 }

@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:54:48 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/22 11:50:48 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:22:33 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	find_equ(t_obj *sobj, int index)
 	else
 		return (find_nxt_lower(sobj->b, rank));
 }
+
 int	calc_ops(t_obj *sobj, int index)
 {
 	int	equ_in_b;

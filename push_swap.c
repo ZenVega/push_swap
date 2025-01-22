@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:18:55 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/22 14:13:50 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:01:23 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -45,16 +45,48 @@ void	print_sl(t_sl *list)
 	}
 }
 
+int	rank_list(t_sl **list)
+{
+	t_sl	*current;
+	t_sl	*comp;
+	int		rank;
+	int		rank_max;
+
+	rank = 0;
+	rank_max = 0;
+	current = *list;
+	comp = current->next;
+	while (current && comp)
+	{
+		while (comp)
+		{
+			if (current->value > comp->value)
+				rank++;
+			comp = comp->next;
+		}
+		current->rank = rank;
+		if (rank > rank_max)
+			rank_max = rank;
+		rank = 0;
+		current = current->next;
+		comp = *list;
+	}
+	return (rank_max + 1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_obj	*sobj;
 
 	sobj = (t_obj *)malloc(sizeof(t_obj));
 	if (argc < 2 || !sobj)
-		return (handle_error(NULL));
+		return (handle_error(sobj));
 	sobj->a = NULL;
 	sobj->b = NULL;
-	sobj->len_a = create_list(&sobj->a, argc, argv);
+	if (!create_list(&sobj->a, argc, argv))
+		return (handle_error(sobj));
+	sobj->len_a = rank_list(&sobj->a);
+	sobj->len_b = 0;
 	if (!sobj->len_a)
 		return (handle_error(sobj));
 	solve_turk(sobj);
