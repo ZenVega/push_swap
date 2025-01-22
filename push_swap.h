@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:32:07 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/20 15:32:22 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:42:58 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ int		list_size(t_sl *lst);
 t_sl	*lst_last(t_sl *lst);
 int		get_rank(t_sl **list, int len, int index);
 
+//utils_3.c
+int		abs_dst(int a, int b);
+int		get_abs(int val);
+int		find_high_low(t_sl *lst, int high);
+int		find_nxt_higher(t_sl *lst, int target);
+int		find_nxt_lower(t_sl *lst, int target);
+
 //setup.c
 int		create_list(t_sl **list, int argc, char **argv);
 int		handle_error(t_sl **list);
@@ -60,23 +67,13 @@ void	swap_list(t_obj *sobj, char *id);
 void	rotate_list(t_obj *sobj, char *id);
 void	push_list(t_obj *sobj, char *id);
 
-//simple_solve.c
-void	solve_simple(t_obj *sobj);
-//sove_2.c
-void	solve_50_50(t_obj *sobj);
-int		find_closest(t_obj *sobj, int val, int dir);
 //sove_turk.c
 int		find_high_low(t_sl *lst, int high);
 void	solve_turk(t_obj *sobj);
 
 //find_cheapest.c
 int		find_cheapest(t_obj *sobj);
-int		find_cheapest_turk(t_obj *sobj);
-int		get_abs(int val);
-int		find_nxt_higher(t_sl *lst, int target);
-int		find_nxt_lower(t_sl *lst, int target);
 
-//solve_for_idx
+//solve_for_idx.c
 void	solve_for_idx(t_obj *sobj, int i);
-void	solve_for_idx_turk(t_obj *sobj, int i);
 #endif

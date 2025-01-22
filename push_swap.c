@@ -6,7 +6,7 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:18:55 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/08 11:03:27 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:45:16 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -37,7 +37,7 @@ void	print_sl(t_sl *list)
 int	main(int argc, char **argv)
 {
 	t_obj	*sobj;
-
+//TODOS: check for invalid inputs
 	sobj = (t_obj *)malloc(sizeof(t_obj));
 	if (argc < 2 || !sobj)
 		return (handle_error(NULL));

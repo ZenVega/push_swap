@@ -1,85 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_2.c                                          :+:      :+:    :+:   */
+/*   solve_turk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 12:55:01 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/20 15:55:17 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:40:49 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
-
-void	check_swap(t_obj *sobj)
-{
-	if (sobj->len_b >= 2 && sobj->b->rank < sobj->b->next->rank)
-		call_action("ss", sobj);
-	else
-		call_action("sa", sobj);
-}
-
-int	abs_dst(int a, int b)
-{
-	a -= b;
-	if (a < 0)
-		a = -a;
-	return (a);
-}
-
-int	find_in_list(t_sl **list, int val)
-{
-	int		i;
-	t_sl	*lst;
-
-	i = 0;
-	lst = *list;
-	while (lst)
-	{
-		if (lst->rank == val)
-			return (i);
-		lst = lst->next;
-		i++;
-	}
-	return (-1);
-}
-
-int	find_high_low(t_sl *lst, int high)
-{
-	int		ret_i;
-	int		i;
-	int		cur;
-	t_sl	*next;
-
-	i = 0;
-	ret_i = 0;
-	next = lst;
-	cur = lst->rank;
-	while (next)
-	{
-		if (high)
-		{
-			if (next->rank > cur)
-			{
-				ret_i = i;
-				cur = next->rank;
-			}
-		}
-		else
-		{
-			if (next->rank < cur)
-			{
-				ret_i = i;
-				cur = next->rank;
-			}
-		}
-		next = next->next;
-		i++;
-	}
-	return (ret_i);
-}
 
 void	sort_three(t_obj *sobj)
 {
@@ -170,8 +102,8 @@ void	solve_turk(t_obj *sobj)
 		//print_sl(sobj->a);
 		//ft_printf("B:\n");
 		//print_sl(sobj->b);
-		cheapest = find_cheapest_turk(sobj);
-		solve_for_idx_turk(sobj, cheapest);
+		cheapest = find_cheapest(sobj);
+		solve_for_idx(sobj, cheapest);
 	}
 	move_back_a(sobj);
 	rotate_to_0(sobj);

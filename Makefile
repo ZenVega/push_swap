@@ -6,7 +6,7 @@
 #    By: uschmidt <uschmidt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 10:42:30 by uschmidt          #+#    #+#              #
-#    Updated: 2025/01/20 15:10:22 by uschmidt         ###   ########.fr        #
+#    Updated: 2025/01/22 10:38:53 by uschmidt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ actions.c\
 call_actions.c\
 utils.c\
 utils_2.c\
+utils_3.c\
 setup.c\
-simple_solve.c\
 solve_turk.c\
 find_cheapest.c\
 solve_for_idx.c\
