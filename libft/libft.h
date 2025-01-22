@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: uschmidt <uschmidt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 16:41:43 by uschmidt          #+#    #+#             */
-/*   Updated: 2024/11/19 09:54:36 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:19:49 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
 
+//ft_printf
+int		ft_printf(const char *str, ...);
+int		ft_putnbr_base(long long nbr, char *base);
+void	ft_putull_base(unsigned long long nbr, char *base, int cnt, int radix);
+int		ft_printptr(void *ptr);
+int		ft_printchar(char c);
+int		ft_printstr(char *c);
+int		ft_printnbr(long long nbr);
+int		ft_printprcnt(void);
+int		ft_print_ptr(unsigned long long ptr);
 #endif

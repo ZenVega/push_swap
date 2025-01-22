@@ -6,7 +6,7 @@
 #    By: uschmidt <uschmidt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 10:42:30 by uschmidt          #+#    #+#              #
-#    Updated: 2025/01/22 10:38:53 by uschmidt         ###   ########.fr        #
+#    Updated: 2025/01/22 13:38:57 by uschmidt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,35 +33,29 @@ CFLAGS_SAN = -Wall -Wextra -Werror -fsanitize=leak
 
 NAME = push_swap
  
-PRINTF_DIR = ft_printf
-PRINTF = $(PRINTF_DIR)/libftprintf.a
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
 ARGS = 5 8 2 9 -3
 
 all: $(NAME) 
 
-$(NAME): $(OFILES) $(PRINTF)
-	@ar x $(PRINTF)  # Extract object files from libftprintf.a
-	$(CC) $(CFLAGS) -o $(NAME) *.o
+$(NAME): $(OFILES) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) *.o $(LIBFT)
 
-$(PRINTF):
-	$(MAKE) -C $(PRINTF_DIR)
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-debug: $(OFILES) $(PRINTF)
-	@ar x $(PRINTF)  # Extract object files from printf.a
-	$(CC) $(CFLAGS) -o $(NAME)_deb *.o
-	gdb --args ./$(NAME)_deb $(ARGS)
-
 clean:
 	rm -f *.o
-	$(MAKE) -C $(PRINTF_DIR) clean
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean:	clean
 	rm -f *.o
-	$(MAKE) -C $(PRINTF_DIR) fclean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

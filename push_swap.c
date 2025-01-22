@@ -6,11 +6,11 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:18:55 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/22 11:45:16 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:09:47 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-#include "ft_printf/ft_printf.h"
+#include "libft/libft.h"
 
 void	print_sl(t_sl *list)
 {

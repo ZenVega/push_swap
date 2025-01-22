@@ -6,11 +6,11 @@
 /*   By: uschmidt <uschmidt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 10:02:03 by uschmidt          #+#    #+#             */
-/*   Updated: 2024/11/27 15:54:37 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:22:33 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static int	get_base(char *base)
 {

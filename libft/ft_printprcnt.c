@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple_solve.c                                     :+:      :+:    :+:   */
+/*   ft_printprcnt.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: uschmidt <uschmidt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 14:08:20 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/09 13:10:37 by uschmidt         ###   ########.fr       */
+/*   Created: 2024/11/25 15:35:01 by uschmidt          #+#    #+#             */
+/*   Updated: 2024/11/27 10:47:55 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	solve_simple(t_obj *sobj)
+int	ft_printprcnt(void)
 {
-	int		i;
-
-	i = 0;
-	while (i < sobj->len_a)
-	{
-		while (sobj->a->rank != i)
-			call_action("ra", sobj);
-		call_action("pb", sobj);
-		i++;
-	}
-	while (sobj->len_a-- > 0)
-		call_action("pa", sobj);
+	write(1, "%", 1);
+	return (1);
 }

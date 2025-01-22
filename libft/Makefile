@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: uschmidt <uschmidt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 10:42:30 by uschmidt          #+#    #+#              #
-#    Updated: 2024/11/19 10:42:52 by uschmidt         ###   ########.fr        #
+#    Updated: 2025/01/22 13:07:08 by uschmidt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,12 @@ ft_strtrim.c\
 ft_substr.c\
 ft_tolower.c\
 ft_toupper.c\
+ft_print_utils.c\
+ft_printf.c\
+ft_printnbr.c\
+ft_printprcnt.c\
+ft_printptr.c\
+ft_putnbr_base.c
 
 OFILES = $(CFILES:.c=.o)
 

@@ -6,14 +6,13 @@
 /*   By: uschmidt <uschmidt@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:32:07 by uschmidt          #+#    #+#             */
-/*   Updated: 2025/01/22 11:42:58 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:10:21 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
 
 typedef struct s_sl
 {

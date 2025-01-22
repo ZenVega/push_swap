@@ -6,11 +6,23 @@
 /*   By: uschmidt <uschmidt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 15:05:08 by uschmidt          #+#    #+#             */
-/*   Updated: 2024/11/27 15:54:37 by uschmidt         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:34:35 by uschmidt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+static int	ft_ptr_len(unsigned long long ptr)
+{
+	int	len;
+
+	len = 0;
+	while (ptr != 0)
+	{
+		ptr /= 16; // Divide the number by the base (16 for hexadecimal)
+		len++;
+	}
+	return (len);
+}
 
 int	ft_print_ptr(unsigned long long ptr)
 {
