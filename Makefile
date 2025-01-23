@@ -41,7 +41,7 @@ ARGS = 5 8 2 9 -3
 all: $(NAME) 
 
 $(NAME): $(OFILES) $(LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) *.o $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) *.o $(LIBFT) -no-pie
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)

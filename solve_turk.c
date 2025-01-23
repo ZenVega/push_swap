@@ -94,12 +94,15 @@ void	solve_turk(t_obj *sobj)
 {
 	int	cheapest;
 
-	call_action("pb", sobj);
-	call_action("pb", sobj);
-	while (sobj->len_a > 3)
+	if (sobj->len_a > 3)
 	{
-		cheapest = find_cheapest(sobj);
-		solve_for_idx(sobj, cheapest);
+		call_action("pb", sobj);
+		call_action("pb", sobj);
+		while (sobj->len_a > 3)
+		{
+			cheapest = find_cheapest(sobj);
+			solve_for_idx(sobj, cheapest);
+		}
 	}
 	sort_three(sobj);
 	move_back_a(sobj);
