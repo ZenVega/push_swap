@@ -15,6 +15,8 @@ int	validate(char *input)
 {
 	if (*input == '-')
 		input++;
+	if (!ft_isdigit(*input))
+		return (0);
 	while (*input)
 	{
 		if (!ft_isdigit(*input))

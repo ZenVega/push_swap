@@ -90,10 +90,23 @@ void	move_back_a(t_obj *sobj)
 	}
 }
 
+int	is_sorted(t_sl *lst)
+{
+	while (lst->next)
+	{
+		if (lst->rank > lst->next->rank)
+			return (0);
+		lst = lst->next;
+	}
+	return (1);
+}
+
 void	solve_turk(t_obj *sobj)
 {
 	int	cheapest;
 
+	if (is_sorted(sobj->a))
+		return ;
 	if (sobj->len_a > 3)
 	{
 		call_action("pb", sobj);

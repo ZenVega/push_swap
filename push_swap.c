@@ -19,7 +19,7 @@ int	handle_error(t_obj *sobj)
 	if (sobj->b)
 		clear_list(&sobj->b);
 	free(sobj);
-	ft_printf("Error\n");
+	write(2, "Error\n", 6);
 	return (0);
 }
 
