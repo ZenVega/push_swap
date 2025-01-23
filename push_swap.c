@@ -80,7 +80,10 @@ int	main(int argc, char **argv)
 
 	sobj = (t_obj *)malloc(sizeof(t_obj));
 	if (argc < 2 || !sobj)
-		return (handle_error(sobj));
+	{
+		free(sobj);
+		return (1);
+	}
 	sobj->a = NULL;
 	sobj->b = NULL;
 	if (!create_list(&sobj->a, argc, argv))
