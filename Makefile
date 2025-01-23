@@ -54,7 +54,8 @@ clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean:	clean
-	rm -f *.o
+	$(MAKE) clean
+	rm push_swap
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
